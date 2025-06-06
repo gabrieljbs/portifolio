@@ -1,0 +1,42 @@
+export const projetos = [
+  {
+    id: 1,
+    titulo: 'Costa Rodrigues',
+    descricao: 'Um site pessoal para uma agencia de advocacia',
+    imagem: '/foto_01.png',
+    link: 'https://costa-rodrigues-gabriels-projects-368d0f0a.vercel.app/',
+     tecnologias: ["react", "tailwindcss", "typescript"],
+  },
+  {
+    id: 2,
+    titulo: 'Dashboard',
+    descricao: 'Um Painel com grafico',
+    imagem: '/foto_02.png',
+    link: 'https://dashboard-lovat-nu-67.vercel.app/',
+     tecnologias: ["react", "tailwindcss", "typescript"],
+  },
+  {
+    id: 3,
+    titulo: 'Fotos',
+    descricao: 'Uma galeria para salvar fotos',
+    imagem: '/foto_03.png',
+    link: 'https://fotos-puce.vercel.app/',
+     tecnologias: ["react", "tailwindcss", "typescript"],
+  },
+  {
+    id: 4,
+    titulo: 'Procio',
+    descricao: 'Um contrele de animais de fazenda',
+    imagem: '/foto_04.png',
+    link: 'https://procio-tau.vercel.app/',
+     tecnologias: ["react", "tailwindcss", "typescript"],
+  },
+  {
+    id: 5,
+    titulo: 'Mapa',
+    descricao: 'Um Mapa da sua localizção atual',
+    imagem: '/foto_05.png',
+    link: 'https://mapa-seven.vercel.app/',
+    tecnologias: ["react", "tailwindcss", "typescript"],
+  },
+];

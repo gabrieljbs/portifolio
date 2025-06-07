@@ -13,7 +13,6 @@ export default function Home() {
           <Link href="#tecnologias" className="hover:underline hover:text-blue-400">Tecnologias</Link>
           <Link href="#projetos" className="hover:underline hover:text-blue-400">Projetos</Link>
           <Link href="#sobre" className="hover:underline hover:text-blue-400">Sobre</Link>
-          <Link href="#contato" className="hover:underline hover:text-blue-400">Contato</Link>
         </nav>
       </header>
 

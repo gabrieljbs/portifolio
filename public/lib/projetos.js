@@ -12,7 +12,7 @@ export const projetos = [
     titulo: 'Dashboard',
     descricao: 'Painel básico com gráficos interativos para visualização de dados, útil para relatórios e acompanhamento de métricas.',
     imagem: '/foto_02.png',
-    link: 'https://dashboard-lovat-nu-67.vercel.app/',
+    link: 'https://dashboard-plum-pi.vercel.app/',
     tecnologias: ["Angular", "Chart.js", "Typescript"],
   },
   {

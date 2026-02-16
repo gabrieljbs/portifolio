@@ -14,7 +14,7 @@ export async function getTechnologies(page = 1, limit = 50) {
         const data = await Query({
             method: 'GET',
             url: `technologies?page=${page}&limit=${limit}`,
-            debug: true
+            debug: false
         })
 
         return {

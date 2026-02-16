@@ -1,5 +1,4 @@
 "use server"
-// Removemos o fallback local. Agora depende estritamente da variável de ambiente.
 const BASE_URL = process.env.NEXT_PUBLIC_URL_API;
 export async function Query({ method, url, debug = false, body, headers, cache }: FetchOptions) {
 
@@ -31,6 +30,10 @@ export async function Query({ method, url, debug = false, body, headers, cache }
 
         if (body) {
             config.body = JSON.stringify(body);
+        }
+
+        if (!BASE_URL) {
+            throw new Error("A variável NEXT_PUBLIC_URL_API não está definida.");
         }
 
         const cleanBaseUrl = BASE_URL.endsWith('/') ? BASE_URL.slice(0, -1) : BASE_URL;

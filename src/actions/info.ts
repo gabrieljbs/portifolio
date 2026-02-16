@@ -1,4 +1,4 @@
-'use server'
+// Data fetching actions for portfolio information
 
 import { Query } from '@/lib/api';
 import { ProfileData, SocialLink } from '@/types/backend';
@@ -14,6 +14,7 @@ export async function getTechnologies(page = 1, limit = 50) {
         const data = await Query({
             method: 'GET',
             url: `technologies?page=${page}&limit=${limit}`,
+            cache: 'force-cache',
             debug: false
         })
 

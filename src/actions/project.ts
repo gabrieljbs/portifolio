@@ -1,4 +1,4 @@
-'use server'
+// Project data fetching actions
 
 import { Query } from '@/lib/api';
 import { ProjectData } from '@/types/backend';
@@ -27,8 +27,8 @@ export async function getProjects(): Promise<ProjectData[]> {
         return [];
     } catch (error) {
         console.warn("⚠️ API não disponível para projetos, usando dados locais.");
-        const { projetos } = await import('@/data/projetos');
-        return projetos;
+
+        return [];
     }
 }
 

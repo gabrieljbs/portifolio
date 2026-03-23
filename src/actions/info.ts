@@ -14,7 +14,7 @@ export async function getTechnologies(page = 1, limit = 50) {
         const data = await Query({
             method: 'GET',
             url: `technologies?page=${page}&limit=${limit}`,
-            cache: 'force-cache',
+            cache: 'no-store',
             debug: false
         })
 
@@ -39,7 +39,7 @@ export async function getSocialLinks(): Promise<SocialLink[]> {
         const data = await Query({
             method: 'GET',
             url: '/social-links',
-            cache: 'force-cache',
+            cache: 'no-store',
             debug: false
         });
 
@@ -65,7 +65,7 @@ export async function getProfileData(): Promise<ProfileData | null> {
         const data = await Query({
             method: 'GET',
             url: '/profile',
-            cache: 'force-cache'
+            cache: 'no-store'
         });
 
         let profiles: ProfileData[] = [];

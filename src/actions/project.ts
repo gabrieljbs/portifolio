@@ -12,7 +12,7 @@ export async function getProjects(): Promise<ProjectData[]> {
         const data = await Query({
             method: 'GET',
             url: '/projects',
-            cache: 'force-cache',
+            cache: 'no-store',
             debug: false
         });
 
@@ -40,7 +40,7 @@ export async function getProjectById(id: string | number): Promise<ProjectData |
         const data = await Query({
             method: 'GET',
             url: `/projects/${id}`,
-            cache: 'force-cache'
+            cache: 'no-store'
         });
         return data as ProjectData;
     } catch (error) {

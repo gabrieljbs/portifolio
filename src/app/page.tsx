@@ -1,16 +1,20 @@
 
 import Header from "@/components/Header";
+import HeaderSkeleton from "@/components/HeaderSkeleton";
 import Footer from "@/components/Footer";
 import Hero from "@/components/info/Hero";
 import Technologies from "@/components/info/Technologies";
 import Projects from "@/components/projects/Projects";
 import About from "@/components/About";
+import Contact from "@/components/Contact";
 import { Suspense } from "react";
 
 function Loading() {
     return (
-        <div className="flex justify-center items-center py-24">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        <div className="w-full h-[400px] bg-dark-surface/50 border border-slate-800/50 rounded-2xl animate-pulse flex flex-col items-center justify-center p-8 space-y-4 my-8">
+            <div className="w-1/3 h-8 bg-slate-700/30 rounded"></div>
+            <div className="w-2/3 h-4 bg-slate-700/30 rounded"></div>
+            <div className="w-1/2 h-4 bg-slate-700/30 rounded"></div>
         </div>
     );
 }
@@ -26,7 +30,9 @@ export default function Home() {
             </div>
 
             <div className="relative z-10">
-                <Header />
+                <Suspense fallback={<HeaderSkeleton />}>
+                    <Header />
+                </Suspense>
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 pb-24">
                     <Suspense fallback={<Loading />}>

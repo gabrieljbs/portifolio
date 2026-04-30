@@ -1,0 +1,45 @@
+name: Auto Release Notes
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  generate-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get recent commits
+        id: commits
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$LAST_TAG" ]; then
+            COMMITS=$(git log --pretty=format:"%h - %s" | head -20)
+          else
+            COMMITS=$(git log $LAST_TAG..HEAD --pretty=format:"%h - %s")
+          fi
+          
+          echo "commits<<EOF" >> $GITHUB_OUTPUT
+          echo "$COMMITS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          PROMPT="Gere notas de release profissionais baseado nesses commits:\n\n${{ steps.commits.outputs.commits }}\n\nFormate assim:\n## ✨ Novidades\n## 🐛 Correções\n## 📚 Documentação\n## 🚀 Melhorias\n\nSeja conciso e profissional."
+          
+          echo "notes<<EOF" >> $GITHUB_OUTPUT
+          echo "$PROMPT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Update release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release edit ${{ github.event.release.tag_name }} --notes "${{ steps.notes.outputs.notes }}"

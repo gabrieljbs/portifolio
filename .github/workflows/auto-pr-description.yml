@@ -1,0 +1,50 @@
+name: Auto PR Description
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  generate-description:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get PR diff and commits
+        id: pr-info
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          COMMITS=$(git log ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} --pretty=format:"%h - %s")
+          DIFF=$(git diff ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} --stat)
+          
+          echo "commits<<EOF" >> $GITHUB_OUTPUT
+          echo "$COMMITS" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          echo "diff<<EOF" >> $GITHUB_OUTPUT
+          echo "$DIFF" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Generate PR description
+        id: generate
+        run: |
+          PROMPT="Gere uma descrição profissional para um Pull Request com os seguintes commits:\n\n${{ steps.pr-info.outputs.commits }}\n\nMudanças de arquivos:\n${{ steps.pr-info.outputs.diff }}\n\nFormate a resposta assim:\n## 📝 O que muda\n## 🎯 Por que\n## ✅ Como testar\n## 📋 Checklist"
+          
+          echo "description<<EOF" >> $GITHUB_OUTPUT
+          echo "$PROMPT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Comment on PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --body "## 🤖 Descrição Auto-gerada
+
+${{ steps.generate.outputs.description }}"

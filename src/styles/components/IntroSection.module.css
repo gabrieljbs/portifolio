@@ -1,0 +1,104 @@
+.blockIntro {
+  background: var(--bg-void);
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 0 60px;
+  position: relative; overflow: hidden;
+}
+
+/* Fundo fotográfico (Setup real) no bloco preto */
+.blockIntro::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("/bg-workspace.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.introContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+  position: relative; z-index: 1;
+}
+
+.introTerminalLine {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem; color: var(--scarlet);
+  margin-bottom: 1.75rem; display: flex; align-items: center; gap: 0.5rem;
+  opacity: 0.85;
+}
+.introTerminalLine::before {
+  content: '>';
+  color: var(--text-muted);
+}
+
+.introHeading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3.2rem, 7vw, 5.5rem);
+  font-weight: 800; line-height: 1.06;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  margin-bottom: 1.75rem;
+}
+
+.name {
+  color: var(--sand);
+}
+
+.introTypewriterWrapper {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+  font-weight: 600; color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  min-height: 2.2rem; display: flex; align-items: center; gap: 0.4rem;
+}
+
+.introTypewriterPrefix { color: var(--text-muted); }
+
+.introTypewriterText { color: var(--sand); }
+
+.typewriterCursor {
+  display: inline-block; width: 2px; height: 1.1em;
+  background: var(--scarlet); border-radius: 1px;
+  margin-left: 2px; vertical-align: middle;
+  animation: cursor-blink 1s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.introDescription {
+  font-size: 1rem; color: var(--text-secondary);
+  max-width: 560px; line-height: 1.8; margin-bottom: 2.5rem;
+}
+
+.introActions { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+
+.scrollIndicator {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  z-index: 1;
+}
+.scrollIndicatorLine {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, var(--text-muted), transparent);
+  animation: scroll-line 2s ease-in-out infinite;
+}
+@keyframes scroll-line {
+  0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
+  50%  { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0; transform: scaleY(1); transform-origin: bottom; }
+}
+.scrollIndicatorLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.1em;
+  writing-mode: horizontal-tb;
+}

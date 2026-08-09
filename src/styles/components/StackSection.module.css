@@ -1,0 +1,38 @@
+.blockStack {
+  background: var(--bg-light);
+  padding: 6rem 0;
+  position: relative; z-index: 1;
+}
+
+/* Modo claro — textos no bloco cinza */
+.blockStack :global(.section-title)     { color: var(--text-dark); }
+.blockStack :global(.section-index)     { color: var(--copper); }
+.blockStack :global(.section-subtitle)  { color: var(--text-secondary); }
+.blockStack :global(.section-divider)   {
+  background: var(--copper); /* sand some no cinza, copper #B8732A contrasta */
+  opacity: 1;
+}
+
+.techChips {
+  display: flex; flex-wrap: wrap; gap: 0.625rem;
+  margin-top: 2rem;
+}
+
+.techChip {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--surface);
+  border: 1px solid rgba(196, 168, 130, 0.22);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.85rem; font-weight: 500;
+  color: var(--text-muted);
+  transition: var(--t-fast);
+  cursor: default; white-space: nowrap;
+}
+.techChip:hover {
+  border-color: var(--sand-border);
+  color: var(--text-dark);
+  background: var(--accent-dim);
+}
+.techChip img { width: 17px; height: 17px; object-fit: contain; }

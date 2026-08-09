@@ -1,0 +1,65 @@
+.blockContact {
+  background: var(--bg-void);   /* Volta ao preto — espelho do intro */
+  padding: 6rem 0 5rem;
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(237,230,208,0.06);
+}
+
+.contactLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: start;
+}
+
+.contactCtaText {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800; line-height: 1.15;
+  letter-spacing: -0.03em; color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+.contactCtaText span { color: var(--sand); }
+
+.contactSubtitle {
+  color: var(--text-secondary); font-size: 0.95rem; line-height: 1.75;
+  max-width: 380px;
+}
+
+.socialList {
+  display: flex; flex-direction: column; gap: 0.625rem;
+  list-style: none;
+}
+
+.socialItem {
+  display: flex; align-items: center; gap: 0.875rem;
+  padding: 0.875rem 1.125rem;
+  background: rgba(237,230,208,0.03);
+  border: 1px solid rgba(237,230,208,0.10); /* ligeiramente mais visível */
+  border-radius: var(--radius-md);
+  color: var(--text-primary); font-size: 0.9rem; font-weight: 500;
+  transition: var(--t-normal);
+}
+.socialItem:hover {
+  color: var(--text-primary);
+  border-color: var(--sand-border);
+  background: var(--sand-dim);
+}
+/* fundo branco para SVGs escuros (GitHub #181717, Next.js #000) não desaparecerem no preto */
+.socialIcon {
+  width: 20px; height: 20px; flex-shrink: 0;
+  background: rgba(255,255,255,0.92);
+  border-radius: 5px;
+  padding: 3px;
+  object-fit: contain;
+}
+.socialItemArrow {
+  margin-left: auto; color: var(--text-secondary); /* era text-muted = #6B5D4F, contraste ruim */
+  transition: transform var(--t-fast), color var(--t-fast);
+}
+.socialItem:hover .socialItemArrow {
+  transform: translateX(3px); color: var(--sand);
+}
+
+@media (max-width: 700px) {
+  .contactLayout { grid-template-columns: 1fr; gap: 3rem; }
+}

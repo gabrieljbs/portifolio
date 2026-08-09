@@ -1,0 +1,25 @@
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--bg-primary); /* Espresso sólido para alto contraste */
+  border-bottom: 1px solid rgba(237,230,208,0.06);
+}
+.navContainer {
+  display: flex; justify-content: space-between;
+  align-items: center; height: 58px;
+}
+
+/* Logo SVG no lugar do título */
+.navLogo { display: flex; align-items: center; }
+
+.navLinks { display: flex; gap: 1.75rem; list-style: none; align-items: center; }
+.navLink {
+  font-family: var(--font-sans); font-weight: 500; font-size: 0.85rem;
+  color: var(--text-muted); transition: color var(--t-fast); position: relative;
+}
+.navLink::after {
+  content: ''; position: absolute; bottom: -3px; left: 0;
+  width: 0; height: 1px; background: var(--sand);
+  transition: width 0.2s ease;
+}
+.navLink:hover { color: var(--text-primary); }
+.navLink:hover::after { width: 100%; }

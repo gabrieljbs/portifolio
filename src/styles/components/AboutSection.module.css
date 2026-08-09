@@ -1,0 +1,91 @@
+.blockAbout {
+  background: var(--bg-light); /* mesmo bg do Minha Stack */
+  padding: 6rem 0;
+  position: relative; z-index: 1;
+}
+
+/* Contraste — todos os textos escuros sobre fundo claro */
+.blockAbout h2,
+.blockAbout h3 { color: #1A1510; }
+.blockAbout .aboutBio { color: #3D342A; }
+.blockAbout .aboutTagline { color: #5C4F42; border-left-color: var(--sand-border); }
+.blockAbout .sectionTitle { color: #1A1510; }
+.blockAbout .sectionIndex { color: var(--copper); }
+
+/* Overrides para classes globais no fundo cinza */
+.blockAbout :global(.section-title) { color: #1A1510; }
+.blockAbout :global(.section-divider) {
+  background: var(--copper); /* sand #C4A882 some no cinza, copper #B8732A contrasta */
+  opacity: 1;
+}
+
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 520px) 1fr;
+  gap: 4rem; align-items: center;
+}
+
+.aboutPhoto {
+  width: 100%; max-width: 520px;
+  aspect-ratio: 4/5;
+  object-fit: cover; border-radius: var(--radius-lg);
+  display: block;
+  border: 1px solid var(--border-card);
+}
+
+
+
+/* Placeholder sem foto */
+.aboutPhotoPlaceholder {
+  width: 100%; max-width: 520px; aspect-ratio: 4/5;
+  background: #B0AEAC; /* contrasta com var(--bg-light) = #C6C6C6 */
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(196, 168, 130, 0.50);
+  display: flex; align-items: center; justify-content: center;
+}
+.aboutPhotoPlaceholder svg {
+  width: 88px; height: 88px; color: #8C7B6B; opacity: 0.65;
+}
+
+.aboutText { display: flex; flex-direction: column; gap: 1.25rem; }
+
+.aboutQuote {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: var(--copper);
+  text-transform: uppercase; letter-spacing: 0.14em; display: block;
+}
+
+.aboutBio {
+  font-size: 1rem; color: #3D342A;
+  line-height: 1.8;
+}
+
+.aboutTagline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem; font-style: italic;
+  color: #5C4F42; padding-left: 1rem;
+  border-left: 2px solid rgba(196, 168, 130, 0.65); /* visível no fundo claro */
+}
+
+@media (max-width: 780px) {
+  .aboutGrid { grid-template-columns: 1fr; }
+}
+
+.aboutHeading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+  font-weight: 700; letter-spacing: -0.025em;
+  color: #1A1510;
+}
+
+/* Botão com presença visual no fundo cinza */
+.blockAbout :global(.btn-secondary) {
+  color: #1A1510;
+  border-color: rgba(26, 21, 16, 0.30);
+  background: #ffffff; /* branco sólido se destaca sobre #C6C6C6 */
+}
+.blockAbout :global(.btn-secondary):hover {
+  background: #F0EEEB;
+  border-color: rgba(26, 21, 16, 0.60);
+}

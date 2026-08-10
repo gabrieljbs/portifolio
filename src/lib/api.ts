@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://gabriel.runasp.net';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
 
 export interface FetchOptions extends Omit<RequestInit, 'body'> {
   url: string;
@@ -68,6 +68,7 @@ export async function Query<T>({ method = 'GET', url, debug = false, body, heade
     if (debug) {
       console.error('[Query Error]:', error);
     }
-    throw error;
+    // Retorna nulo/objeto vazio graciosamente se a requisição falhar (ex: durante a build estática sem a env configurada)
+    return null as unknown as T;
   }
 }

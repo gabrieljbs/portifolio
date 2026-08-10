@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://gabriel.runasp.net';
 
 export interface FetchOptions extends Omit<RequestInit, 'body'> {
   url: string;
@@ -6,7 +6,7 @@ export interface FetchOptions extends Omit<RequestInit, 'body'> {
   body?: any;
 }
 
-export async function Query<T>({ method = 'GET', url, debug = false, body, headers, cache = 'no-store', ...rest }: FetchOptions): Promise<T> {
+export async function Query<T>({ method = 'GET', url, debug = false, body, headers, cache, ...rest }: FetchOptions): Promise<T> {
   try {
     const requestHeaders: Record<string, string> = {
       'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export async function Query<T>({ method = 'GET', url, debug = false, body, heade
     const config: RequestInit = {
       method,
       headers: requestHeaders,
-      cache,
+      ...(cache ? { cache } : {}),
       ...rest,
     };
 

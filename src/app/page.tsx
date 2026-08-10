@@ -10,7 +10,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import StackSection    from "@/components/StackSection";
 import ContactSection  from "@/components/ContactSection";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const [profile, technologies, projects, socialLinks] = await Promise.all([

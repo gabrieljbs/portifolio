@@ -1,4 +1,4 @@
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:5000';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 
 export interface FetchOptions extends Omit<RequestInit, 'body'> {
   url: string;
@@ -8,6 +8,11 @@ export interface FetchOptions extends Omit<RequestInit, 'body'> {
 
 export async function Query<T>({ method = 'GET', url, debug = false, body, headers, cache, ...rest }: FetchOptions): Promise<T> {
   try {
+    if (!BASE_URL) {
+      console.error('[Query Error]: NEXT_PUBLIC_API_URL não está definida nas variáveis de ambiente.');
+      return null as unknown as T;
+    }
+
     const requestHeaders: Record<string, string> = {
       'Content-Type': 'application/json',
     };
